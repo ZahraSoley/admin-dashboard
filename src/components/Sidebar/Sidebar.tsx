@@ -1,4 +1,5 @@
 import AccountToggle from "./AccountToggle"
+import RouteSelect from "./RouteSelect"
 import Search from "./Search"
 
 const Sidebar = () => {
@@ -9,6 +10,7 @@ const Sidebar = () => {
       <div className="overflow-y-scroll sticky pt-4 h-7/8">
         <AccountToggle />
         <Search />
+        <RouteSelect />
       </div>
       {/* setting */}
       <div className="h-1/8"></div>

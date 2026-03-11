@@ -1,4 +1,5 @@
 import { Command } from 'cmdk'
+import { Eye, Link, Phone, Plus } from 'lucide-react';
 import { useEffect, useState, type Dispatch, type SetStateAction } from 'react'
 
 interface propsType {
@@ -36,21 +37,50 @@ const CommandMenu = ({ open, setOpen }: propsType) => {
             >
                 <Command.Input
                     value={value}
-                    onValueChange={setValue}
+                    onValueChange={setValue} // react pass the event value to the setvalue under the hood 
                     placeholder='what do you need to do?'
-                    className='focus:outline-1 focus:outline-stone-300 w-full border-b border-stone-300 px-3 py-1.5 text-lg placeholder:text-stone-400 relative'
+                    className='focus:outline-1 focus:outline-stone-300 w-full border-b border-stone-300 p-3 text-lg placeholder:text-stone-400 relative'
                 />
-                <Command.List>
-                    <Command.Empty>No results found.</Command.Empty>
+                <Command.List className='p-3 '>
+                    <Command.Empty>No results found for
+                        <span className='text-sky-600'> {value}</span>
+                    </Command.Empty>
 
-                    <Command.Group heading="Letters">
-                        <Command.Item>a</Command.Item>
-                        <Command.Item>b</Command.Item>
-                        <Command.Separator />
-                        <Command.Item>c</Command.Item>
+                    <Command.Group heading="Team" className='text-sm mb-3 text-stone-400'>
+                        <Command.Item
+                            className='flex items-center gap-2 cursor-pointer transition-colors hover:bg-stone-200 rounded p-2 text-sm text-stone-950 '
+                        >
+                            <Plus className='size-3.5 ' />
+                            Invite Member
+                        </Command.Item>
+                        <Command.Item
+                            className='flex items-center gap-2 cursor-pointer transition-colors hover:bg-stone-200 rounded p-2 text-sm text-stone-950 '
+                        >
+                            <Eye className='size-3.5 ' />
+                            See Org Chart
+                        </Command.Item>
                     </Command.Group>
+                    <Command.Group heading="Integration" className='text-sm mb-3 text-stone-400'>
+                        <Command.Item
+                            className='flex items-center gap-2 cursor-pointer transition-colors hover:bg-stone-200 rounded p-2 text-sm text-stone-950 '
+                        >
+                            <Link className='size-3.5 ' />
+                            Link Services
+                        </Command.Item>
+                        <Command.Item
+                            className='flex items-center gap-2 cursor-pointer transition-colors hover:bg-stone-200 rounded p-2 text-sm text-stone-950 '
+                        >
+                            <Phone className='size-3.5 ' />
+                            Contact Support
+                        </Command.Item>
+                    </Command.Group>
+                    <Command.Item
+                        className='flex items-center gap-2 cursor-pointer bg-stone-950 transition-colors hover:bg-stone-800 rounded p-2 text-sm text-stone-50 '
+                    >
+                        <Phone className='size-3.5 ' />
+                        Contact Support
+                    </Command.Item>
 
-                    <Command.Item>Apple</Command.Item>
                 </Command.List>
             </div>
         </Command.Dialog>
