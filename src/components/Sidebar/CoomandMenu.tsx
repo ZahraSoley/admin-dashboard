@@ -1,5 +1,5 @@
 import { Command } from 'cmdk'
-import { useEffect, type Dispatch, type SetStateAction } from 'react'
+import { useEffect, useState, type Dispatch, type SetStateAction } from 'react'
 
 interface propsType {
     open: boolean;
@@ -7,6 +7,8 @@ interface propsType {
 }
 
 const CommandMenu = ({ open, setOpen }: propsType) => {
+
+    const [value, setValue] = useState('')
 
     // Toggle the menu when ⌘K is pressed
     useEffect(() => {
@@ -32,9 +34,11 @@ const CommandMenu = ({ open, setOpen }: propsType) => {
             <div onClick={(e) => e.stopPropagation()}
                 className='bg-white rounded-lg shadow-xl border-stone-300 border overflow-hidden w-full max-w-lg mx-auto mt-12'
             >
-                <Command.Input 
-                placeholder='what do you need to do?'
-                className='focus:outline-1 focus:outline-stone-300 w-full border-b border-stone-300 px-3 py-1.5 text-lg placeholder:text-stone-400 relative'
+                <Command.Input
+                    value={value}
+                    onValueChange={setValue}
+                    placeholder='what do you need to do?'
+                    className='focus:outline-1 focus:outline-stone-300 w-full border-b border-stone-300 px-3 py-1.5 text-lg placeholder:text-stone-400 relative'
                 />
                 <Command.List>
                     <Command.Empty>No results found.</Command.Empty>
