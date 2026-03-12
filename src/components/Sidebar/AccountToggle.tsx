@@ -2,7 +2,7 @@ import { ChevronsUpDown, User } from "lucide-react"
 
 const AccountToggle = () => {
     return (
-        <div className="pb-4 mb-4 border-b mt-2 border-stone-300">
+        <div className="pb-4 mb-4 border-b mt-2 border-stone-300 ">
             <button className="flex p-0.5 hover:bg-stone-200 rounded transition-colors w-full justify-between items-center">
                 <div className="flex items-center gap-2">
                     <User className="size-8 rounded shrink-0 bg-sky-600 text-white shadow"
