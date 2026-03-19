@@ -1,3 +1,49 @@
+import { ArrowUpRight, MoreHorizontal } from "lucide-react";
+
+const orders: TrType[] = [
+    {
+        cusId: "#48149",
+        sku: "Pro 1 Month",
+        date: "Aug 2nd",
+        price: "$9.75",
+        order: 1,
+    },
+    {
+        cusId: "#1942s",
+        sku: "Pro 3 Month",
+        date: "Aug 2nd",
+        price: "$21.25",
+        order: 2,
+    },
+    {
+        cusId: "#4192",
+        sku: "Pro 1 Year",
+        date: "Aug 1st",
+        price: "$94.75",
+        order: 3,
+    },
+    {
+        cusId: "#99481",
+        sku: "Pro 1 Month",
+        date: "Aug 1st",
+        price: "$9.44",
+        order: 4,
+    },
+    {
+        cusId: "#1364",
+        sku: "Pro 1 Month",
+        date: "Aug 1st",
+        price: "$9.23",
+        order: 5,
+    },
+    {
+        cusId: "#1304",
+        sku: "Pro 3 Month",
+        date: "Jul 31st",
+        price: "$22.02",
+        order: 6,
+    },
+];
 
 const RecentTransaction = () => {
     return (
@@ -6,8 +52,58 @@ const RecentTransaction = () => {
                 <h3 className="flex items-center gap-1.5 font-medium">$ Recent Transactions</h3>
                 <button className="text-sm text-sky-700 cursor-pointer hover:text-sky-800">See all</button>
             </div>
+            <table className="w-full table-auto">
+                <TableHead />
+                <tbody>
+                    {orders.map((item) => (
+                        <TableRow key={item.order} {...item} />
+                    ))}
+                </tbody>
+            </table>
         </div>
     )
 }
 
 export default RecentTransaction
+
+const TableHead = () => {
+    return (
+        <thead>
+            <tr className="text-sm font-normal text-stone-500">
+                <th className="text-start p-1.5">Customer ID</th>
+                <th className="text-start p-1.5">ُSKU</th>
+                <th className="text-start p-1.5">Data</th>
+                <th className="text-start p-1.5">Price</th>
+                <th className="w-8"></th>
+            </tr>
+        </thead>
+    )
+}
+
+interface TrType {
+    cusId: string;
+    sku: string;
+    date: string;
+    price: string;
+    order: number
+}
+
+const TableRow = ({ cusId, sku, date, price, order }: TrType) => {
+    return (
+        <tr className={order % 2 ? 'bg-stone-100 text-sm' : 'text-sm'}>
+            <td className="p-1.5">
+                <a href="#" className="text-sky-700 underline flex items-center gap-1">
+                    {cusId}<ArrowUpRight className="size-3.5" />
+                </a>
+            </td>
+            <td className="p-1.5">{sku}</td>
+            <td className="p-1.5">{date}</td>
+            <td className="p-1.5">{price}</td>
+            <td className="p-1.5">
+                <button className="cursor-pointer hover:bg-stone-200 transition-colors grid place-content-center rounded text-sm size-8">
+                    <MoreHorizontal className="size-4"/>
+                </button>
+            </td>
+        </tr>
+    )
+}
